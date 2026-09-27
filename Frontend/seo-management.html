@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SEO Management | Syscom</title>
+
+    <meta name="description" content="Manage SEO keywords, backlink opportunities and directory listings.">
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+    <header class="site-header">
+
+        <div class="container navbar">
+
+            <a href="dashboard.html" class="logo">
+            Syscom
+        </a>
+
+            <nav>
+
+                <a href="dashboard.html">
+                Dashboard
+            </a>
+
+                <a href="seo-audit.html">
+                SEO Audit
+            </a>
+
+                <a href="blog.html">
+                Resources
+            </a>
+
+                <a href="index.html">
+                Website
+            </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="dashboard-header">
+
+            <div class="container">
+
+                <span class="eyebrow">
+            SEO OPERATIONS
+        </span>
+
+                <h1>
+                    SEO Management
+                </h1>
+
+                <p>
+                    Plan keywords, manage backlink opportunities and track directory listings.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+     KEYWORDS
+========================= -->
+
+        <section class="section">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <h2>Keyword Strategy</h2>
+                    <p>
+                        Manage target keywords based on search intent, target pages and SEO priority.
+                    </p>
+                </div>
+
+                <form id="keywordForm" class="management-form">
+
+                    <div class="form-group">
+
+                        <label for="keyword">
+                    Target Keyword
+                </label>
+
+                        <input type="text" id="keyword" name="keyword" placeholder="e.g. digital solutions for business" required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="search_intent">
+                    Search Intent
+                </label>
+
+                        <select id="search_intent" name="search_intent" required>
+                    <option value="">
+                        Select search intent
+                    </option>
+
+                    <option value="Informational">
+                        Informational
+                    </option>
+
+                    <option value="Commercial">
+                        Commercial
+                    </option>
+
+                    <option value="Transactional">
+                        Transactional
+                    </option>
+
+                    <option value="Navigational">
+                        Navigational
+                    </option>
+
+                </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="target_url">
+                    Target URL
+                </label>
+
+                        <input type="text" id="target_url" name="target_url" placeholder="services.html">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="priority">
+                    Priority
+                </label>
+
+                        <select id="priority" name="priority" required>
+
+                    <option value="">
+                        Select priority
+                    </option>
+
+                    <option value="high">
+                        High
+                    </option>
+
+                    <option value="medium">
+                        Medium
+                    </option>
+
+                    <option value="low">
+                        Low
+                    </option>
+
+                </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <button type="submit" class="btn btn-primary">
+                    Add Keyword
+                </button>
+
+                    </div>
+
+                </form>
+
+                <p id="keywordMessage" class="management-message"></p>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Keyword</th>
+                                <th>Search Intent</th>
+                                <th>Target URL</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="keywordsTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+     BACKLINKS
+========================= -->
+
+        <section class="section">
+
+            <div class="container">
+
+                <div class="dashboard-section-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                    OFF-PAGE SEO
+                </span>
+
+                        <h2>
+                            Backlink Opportunities
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <form id="backlinkForm" class="management-form">
+
+                    <div class="form-group">
+
+                        <label for="backlinkDomain">
+                    Domain
+                </label>
+
+                        <input type="text" id="backlinkDomain" placeholder="example.com" required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="backlinkUrl">
+                    Page URL
+                </label>
+
+                        <input type="url" id="backlinkUrl" placeholder="https://example.com/listing">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="anchorText">
+                    Anchor Text
+                </label>
+
+                        <input type="text" id="anchorText" placeholder="Syscom digital solutions">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="backlinkStatus">
+                    Status
+                </label>
+
+                        <select id="backlinkStatus">
+
+                    <option value="potential">
+                        Potential
+                    </option>
+
+                    <option value="contacted">
+                        Contacted
+                    </option>
+
+                    <option value="acquired">
+                        Acquired
+                    </option>
+
+                    <option value="rejected">
+                        Rejected
+                    </option>
+
+                </select>
+
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">
+                Add Backlink
+            </button>
+
+                </form>
+
+
+                <p id="backlinkMessage" class="management-message"></p>
+
+
+                <div id="backlinkManagementTable" class="dashboard-table-wrapper"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+     DIRECTORIES
+========================= -->
+
+        <section class="section">
+
+            <div class="container">
+
+                <div class="dashboard-section-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                    DIRECTORY LISTINGS
+                </span>
+
+                        <h2>
+                            Directory Opportunities
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <form id="directoryForm" class="management-form">
+
+                    <div class="form-group">
+
+                        <label for="directoryName">
+                    Directory Name
+                </label>
+
+                        <input type="text" id="directoryName" placeholder="Business directory" required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="directoryUrl">
+                    Directory URL
+                </label>
+
+                        <input type="url" id="directoryUrl" placeholder="https://example.com">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="directoryCategory">
+                    Category
+                </label>
+
+                        <input type="text" id="directoryCategory" placeholder="Technology">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="directoryStatus">
+                    Status
+                </label>
+
+                        <select id="directoryStatus">
+
+                    <option value="potential">
+                        Potential
+                    </option>
+
+                    <option value="submitted">
+                        Submitted
+                    </option>
+
+                    <option value="approved">
+                        Approved
+                    </option>
+
+                    <option value="rejected">
+                        Rejected
+                    </option>
+
+                </select>
+
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">
+                Add Directory
+            </button>
+
+                </form>
+
+
+                <p id="directoryMessage" class="management-message"></p>
+
+
+                <div id="directoryManagementTable" class="dashboard-table-wrapper"></div>
+
+            </div>
+
+        </section>
+        <section class="management-section">
+
+            <div class="section-header">
+                <div>
+                    <h2>Social Distribution</h2>
+                    <p>
+                        Track the distribution of Syscom content across social platforms and monitor referral traffic.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Add Social Post -->
+            <div class="management-card">
+
+                <h3>Add Social Post</h3>
+
+                <form id="socialPostForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="socialArticle">
+                                Article
+                            </label>
+
+                            <select id="socialArticle">
+                                <option value="">
+                                    Select article
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="socialPlatform">
+                                Platform
+                            </label>
+
+                            <select id="socialPlatform" required>
+                                <option value="">
+                                    Select platform
+                                </option>
+        
+                                <option value="LinkedIn">
+                                    LinkedIn
+                                </option>
+        
+                                <option value="Facebook">
+                                    Facebook
+                                </option>
+        
+                                <option value="Instagram">
+                                    Instagram
+                                </option>
+        
+                                <option value="X">
+                                    X
+                                </option>
+        
+                                <option value="YouTube">
+                                    YouTube
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="socialTitle">
+                                Post Title
+                            </label>
+
+                            <input type="text" id="socialTitle" placeholder="Enter post title">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="socialUrl">
+                                Post URL
+                            </label>
+
+                            <input type="url" id="socialUrl" placeholder="https://...">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="socialStatus">
+                                Status
+                            </label>
+
+                            <select id="socialStatus">
+        
+                                <option value="planned">
+                                    Planned
+                                </option>
+        
+                                <option value="published">
+                                    Published
+                                </option>
+        
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="socialDate">
+                                Published Date
+                            </label>
+
+                            <input type="datetime-local" id="socialDate">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="socialVisits">
+                                Referral Visits
+                            </label>
+
+                            <input type="number" id="socialVisits" min="0" value="0">
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" class="primary-btn">
+                        Add Social Post
+                    </button>
+
+                </form>
+
+                <p id="socialMessage"></p>
+
+            </div>
+
+
+            <!-- Social Posts Table -->
+            <div class="management-card">
+
+                <div class="section-header">
+
+                    <div>
+                        <h3>Social Distribution Activity</h3>
+                        <p>
+                            Track planned and published content distribution.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Article</th>
+                                <th>Platform</th>
+                                <th>Post</th>
+                                <th>Status</th>
+                                <th>Referral Visits</th>
+                                <th>Created</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="socialPostsTable">
+
+                            <tr>
+                                <td colspan="6">
+                                    Loading social posts...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <p>
+                © 2026 Syscom. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/seo-management.js"></script>
+    <script src="js/logout.js"></script>
+
+</body>
+
+</html>

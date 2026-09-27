@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Growth Resources & Insights | Syscom</title>
+
+    <meta name="description" content="Read practical insights about web development, digital solutions, SEO, online visibility and technology for business growth.">
+
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Digital Growth Resources & Insights | Syscom">
+
+    <meta property="og:description" content="Explore digital growth and technology insights from Syscom.">
+
+    <meta property="og:url" content="https://www.syscom.co.in/blog.html">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:title" content="Digital Growth Resources & Insights | Syscom">
+
+    <meta name="twitter:description" content="Read practical insights about web development, digital solutions, SEO, online visibility and technology for business growth.">
+    <link rel="canonical" href="https://www.syscom.co.in/blog.html">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Syscom Resources",
+            "url": "https://www.syscom.co.in/blog.html"
+        }
+    </script>
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <div class="container navbar">
+
+            <a href="index.html" class="logo">
+            Syscom
+        </a>
+
+            <nav aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="blog.html">Resources</a>
+                <a href="seo-audit.html">SEO Audit</a>
+                <a href="contact.html" class="nav-button">
+                Contact
+            </a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    RESOURCES & INSIGHTS
+                </p>
+
+                <h1>
+                    Digital Growth Resources
+                </h1>
+
+                <p class="hero-text">
+                    Practical insights about websites, SEO, digital technology and online business growth.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="section">
+
+            <div class="container">
+
+                <div id="articlesContainer" class="cards">
+
+                    <p>
+                        Loading articles...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 Syscom. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/api.js"></script>
+
+    <script>
+        async function loadArticles() {
+
+            const container =
+                document.getElementById("articlesContainer");
+
+            try {
+
+                const response =
+                    await apiRequest("/articles");
+
+                if (!response.data.length) {
+
+                    container.innerHTML = `
+                <article class="card">
+                    <h2>No articles yet</h2>
+                    <p>
+                        New resources will be published soon.
+                    </p>
+                </article>
+            `;
+
+                    return;
+                }
+
+                container.innerHTML =
+                    response.data.map(article => `
+
+                <article class="card">
+
+                    <div class="card-icon">
+                        ${article.category || "RESOURCE"}
+                    </div>
+
+                    <h2>
+                        ${article.title}
+                    </h2>
+
+                    <p>
+                        ${article.excerpt || ""}
+                    </p>
+
+                    <a href="article.html?slug=${encodeURIComponent(article.slug)}">
+                        Read article →
+                    </a>
+
+                </article>
+
+            `).join("");
+
+            } catch (error) {
+
+                console.error(error);
+
+                container.innerHTML = `
+            <article class="card">
+                <h2>Unable to load articles</h2>
+                <p>
+                    Please try again later.
+                </p>
+            </article>
+        `;
+            }
+        }
+
+        loadArticles();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Article | Syscom</title>
+
+    <meta name="description" content="Read Syscom's digital growth insights.">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://www.syscom.co.in/article.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Article | Syscom">
+
+    <meta property="og:description" content="Read Syscom's digital growth insights.">
+
+    <meta property="og:type" content="article">
+
+    <meta property="og:url" content="https://www.syscom.co.in/article.html">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="twitter:title" content="Article | Syscom">
+
+    <meta name="twitter:description" content="Read Syscom's digital growth insights.">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <div class="container navbar">
+
+            <a href="index.html" class="logo">
+                Syscom
+            </a>
+
+            <nav aria-label="Main navigation">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="services.html">
+                    Services
+                </a>
+
+                <a href="blog.html">
+                    Resources
+                </a>
+
+                <a href="seo-audit.html">
+                    SEO Audit
+                </a>
+
+                <a href="contact.html" class="nav-button">
+                    Contact
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="section">
+
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <span>›</span>
+
+                <a href="blog.html">
+                    Resources
+                </a>
+
+                <span>›</span>
+
+                <span id="breadcrumbArticleTitle">
+                    Article
+                </span>
+
+            </nav>
+
+
+            <div class="container">
+
+                <article id="articleContent" aria-live="polite">
+
+                    <p>
+                        Loading article...
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 Syscom. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/api.js"></script>
+
+    <script>
+        async function loadArticle() {
+
+            const container =
+                document.getElementById(
+                    "articleContent"
+                );
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+            const slug =
+                params.get("slug");
+
+
+            if (!slug) {
+
+                container.innerHTML = `
+                    <h1>Article Not Found</h1>
+
+                    <p>
+                        No article was specified.
+                    </p>
+                `;
+
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await apiRequest(
+                        `/articles/${encodeURIComponent(slug)}`
+                    );
+
+                const article =
+                    response.data;
+
+
+                /*
+                 * Dynamic page title
+                 */
+                document.title =
+                    article.meta_title ||
+                    article.title;
+
+
+                /*
+                 * Dynamic meta description
+                 */
+                const metaDescription =
+                    document.querySelector(
+                        'meta[name="description"]'
+                    );
+
+                if (metaDescription) {
+
+                    metaDescription.setAttribute(
+                        "content",
+                        article.meta_description ||
+                        article.excerpt ||
+                        ""
+                    );
+
+                }
+
+
+                /*
+                 * Dynamic canonical URL
+                 */
+                const canonicalUrl =
+                    `https://www.syscom.co.in/article.html?slug=${encodeURIComponent(article.slug)}`;
+
+                let canonical =
+                    document.querySelector(
+                        'link[rel="canonical"]'
+                    );
+
+                if (!canonical) {
+
+                    canonical =
+                        document.createElement(
+                            "link"
+                        );
+
+                    canonical.setAttribute(
+                        "rel",
+                        "canonical"
+                    );
+
+                    document.head.appendChild(
+                        canonical
+                    );
+
+                }
+
+                canonical.setAttribute(
+                    "href",
+                    canonicalUrl
+                );
+
+
+                /*
+                 * Dynamic Open Graph metadata
+                 */
+                const ogTitle =
+                    document.querySelector(
+                        'meta[property="og:title"]'
+                    );
+
+                if (ogTitle) {
+
+                    ogTitle.setAttribute(
+                        "content",
+                        article.meta_title ||
+                        article.title
+                    );
+
+                }
+
+
+                const ogDescription =
+                    document.querySelector(
+                        'meta[property="og:description"]'
+                    );
+
+                if (ogDescription) {
+
+                    ogDescription.setAttribute(
+                        "content",
+                        article.meta_description ||
+                        article.excerpt ||
+                        ""
+                    );
+
+                }
+
+
+                const ogUrl =
+                    document.querySelector(
+                        'meta[property="og:url"]'
+                    );
+
+                if (ogUrl) {
+
+                    ogUrl.setAttribute(
+                        "content",
+                        canonicalUrl
+                    );
+
+                }
+
+
+                /*
+                 * Dynamic Twitter metadata
+                 */
+                const twitterTitle =
+                    document.querySelector(
+                        'meta[name="twitter:title"]'
+                    );
+
+                if (twitterTitle) {
+
+                    twitterTitle.setAttribute(
+                        "content",
+                        article.meta_title ||
+                        article.title
+                    );
+
+                }
+
+
+                const twitterDescription =
+                    document.querySelector(
+                        'meta[name="twitter:description"]'
+                    );
+
+                if (twitterDescription) {
+
+                    twitterDescription.setAttribute(
+                        "content",
+                        article.meta_description ||
+                        article.excerpt ||
+                        ""
+                    );
+
+                }
+
+
+                /*
+                 * Update breadcrumb
+                 */
+                const breadcrumbTitle =
+                    document.getElementById(
+                        "breadcrumbArticleTitle"
+                    );
+
+                if (breadcrumbTitle) {
+
+                    breadcrumbTitle.textContent =
+                        article.title;
+
+                }
+
+
+                /*
+                 * Article structured data
+                 */
+                const existingSchema =
+                    document.getElementById(
+                        "articleSchema"
+                    );
+
+                if (existingSchema) {
+
+                    existingSchema.remove();
+
+                }
+
+
+                const schema =
+                    document.createElement(
+                        "script"
+                    );
+
+                schema.id =
+                    "articleSchema";
+
+                schema.type =
+                    "application/ld+json";
+
+
+                schema.textContent =
+                    JSON.stringify({
+
+                        "@context": "https://schema.org",
+
+                        "@type": "Article",
+
+                        "headline": article.title,
+
+                        "description": article.meta_description ||
+                            article.excerpt ||
+                            "",
+
+                        "url": canonicalUrl,
+
+                        "datePublished": article.created_at,
+
+                        "dateModified": article.updated_at,
+
+                        "author": {
+
+                            "@type": "Organization",
+
+                            "name": "Syscom"
+
+                        },
+
+                        "publisher": {
+
+                            "@type": "Organization",
+
+                            "name": "Syscom"
+
+                        }
+
+                    });
+
+
+                document.head.appendChild(
+                    schema
+                );
+
+
+                /*
+                 * Display article
+                 */
+                container.innerHTML = `
+
+                    <p class="eyebrow">
+                        ${article.category || "RESOURCE"}
+                    </p>
+
+                    <h1>
+                        ${article.title}
+                    </h1>
+
+                    <p class="hero-text">
+                        ${article.excerpt || ""}
+                    </p>
+
+                    <hr style="margin: 30px 0;">
+
+                    <div>
+                        ${article.content}
+                    </div>
+
+                    <br>
+
+                    <a
+                        href="blog.html"
+                        class="button secondary"
+                    >
+                        ← Back to Resources
+                    </a>
+
+                `;
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                container.innerHTML = `
+
+                    <h1>
+                        Article Not Found
+                    </h1>
+
+                    <p>
+                        We couldn't find the requested article.
+                    </p>
+
+                    <a
+                        href="blog.html"
+                        class="button secondary"
+                    >
+                        View Resources
+                    </a>
+
+                `;
+
+            }
+
+        }
+
+
+        loadArticle();
+    </script>
+
+</body>
+
+</html>

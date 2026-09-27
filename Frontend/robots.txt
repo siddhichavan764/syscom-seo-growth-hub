@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /dashboard.html
+Disallow: /seo-management.html
+Disallow: /login.html
+Disallow: /seo-audit.html
+
+Sitemap: https://www.syscom.co.in/sitemap.xml

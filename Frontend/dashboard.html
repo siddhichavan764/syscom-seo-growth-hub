@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SEO Growth Dashboard | Syscom</title>
+
+    <meta name="description" content="Monitor SEO audits, keywords, backlinks, directories and leads.">
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+    <header class="site-header">
+
+        <div class="container navbar">
+
+            <a href="index.html" class="logo">
+            Syscom
+        </a>
+
+            <nav>
+
+                <a href="index.html">
+                Website
+            </a>
+
+                <a href="blog.html">
+                Resources
+            </a>
+
+                <a href="seo-audit.html">
+                SEO Audit
+            </a>
+
+                <a href="contact.html">
+                Contact
+            </a>
+                <button type="button" class="btn btn-secondary" onclick="logout()">
+    Logout
+</button>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="dashboard-header">
+
+            <div class="container">
+
+                <span class="eyebrow">
+            SEO MANAGEMENT
+        </span>
+
+                <h1>
+                    SEO Growth Dashboard
+                </h1>
+
+                <p>
+                    Monitor technical SEO, content, keywords, backlinks, directories and incoming leads.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="section">
+
+            <div class="container">
+
+                <div id="dashboardMessage" class="dashboard-message">
+                    Loading dashboard...
+                </div>
+
+
+                <!-- STAT CARDS -->
+
+                <div class="dashboard-stats">
+
+                    <div class="dashboard-stat">
+
+                        <span>
+                    SEO Audits
+                </span>
+
+                        <strong id="auditCount">
+                    0
+                </strong>
+
+                    </div>
+
+
+                    <div class="dashboard-stat">
+
+                        <span>
+                    Keywords
+                </span>
+
+                        <strong id="keywordCount">
+                    0
+                </strong>
+
+                    </div>
+
+
+                    <div class="dashboard-stat">
+
+                        <span>
+                    Backlinks
+                </span>
+
+                        <strong id="backlinkCount">
+                    0
+                </strong>
+
+                    </div>
+
+
+                    <div class="dashboard-stat">
+
+                        <span>
+                    Directories
+                </span>
+
+                        <strong id="directoryCount">
+                    0
+                </strong>
+
+                    </div>
+
+
+                    <div class="dashboard-stat">
+
+                        <span>
+                    Leads
+                </span>
+
+                        <strong id="leadCount">
+                    0
+                </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SEO AUDIT -->
+
+                <div class="dashboard-section">
+
+                    <div class="dashboard-section-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                        TECHNICAL SEO
+                    </span>
+
+                            <h2>
+                                Recent SEO Audits
+                            </h2>
+
+                        </div>
+
+                        <div>
+
+                            <a href="seo-audit.html" class="btn btn-primary">
+        Run New Audit
+    </a>
+
+                            <a href="seo-management.html" class="btn btn-secondary">
+        Manage SEO
+    </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="auditTable" class="dashboard-table-wrapper"></div>
+
+                </div>
+
+
+                <!-- KEYWORDS -->
+
+                <div class="dashboard-section">
+
+                    <div class="dashboard-section-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                        SEARCH VISIBILITY
+                    </span>
+
+                            <h2>
+                                Keyword Tracking
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="keywordTable" class="dashboard-table-wrapper"></div>
+
+                </div>
+
+
+                <!-- BACKLINKS -->
+
+                <div class="dashboard-section">
+
+                    <div class="dashboard-section-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                        OFF-PAGE SEO
+                    </span>
+
+                            <h2>
+                                Backlink Opportunities
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="backlinkTable" class="dashboard-table-wrapper"></div>
+
+                </div>
+
+
+                <!-- DIRECTORIES -->
+
+                <div class="dashboard-section">
+
+                    <div class="dashboard-section-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                        LOCAL & DISCOVERY
+                    </span>
+
+                            <h2>
+                                Directory Tracking
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="directoryTable" class="dashboard-table-wrapper"></div>
+
+                </div>
+
+
+                <!-- LEADS -->
+
+                <div class="dashboard-section">
+
+                    <div class="dashboard-section-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                        CONVERSION
+                    </span>
+
+                            <h2>
+                                Recent Leads
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div id="leadTable" class="dashboard-table-wrapper"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <p>
+                © 2026 Syscom. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

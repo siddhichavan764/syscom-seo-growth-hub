@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Syscom | Digital Solutions</title>
+
+    <meta name="description" content="Contact Syscom to discuss digital solutions, websites, SEO and technology requirements for your business.">
+
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Contact Syscom">
+
+    <meta property="og:description" content="Contact Syscom about digital solutions and technology services.">
+
+    <meta property="og:url" content="https://www.syscom.co.in/contact.html">
+
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://www.syscom.co.in/contact.html">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <div class="container navbar">
+
+            <a href="index.html" class="logo">
+            Syscom
+        </a>
+
+            <nav aria-label="Main navigation">
+
+                <a href="index.html">Home</a>
+
+                <a href="services.html">Services</a>
+
+                <a href="blog.html">Resources</a>
+
+                <a href="seo-audit.html">SEO Audit</a>
+
+                <a href="contact.html" class="nav-button">
+                Contact
+            </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    GET IN TOUCH
+                </p>
+
+                <h1>
+                    Let's Discuss Your Digital Requirements
+                </h1>
+
+                <p class="hero-text">
+                    Tell us about your business, website or technology challenge.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="section">
+
+            <div class="container">
+
+                <form id="contactForm" style="max-width:700px;">
+
+                    <div style="margin-bottom:20px;">
+
+                        <label for="name">
+                    Name
+                </label>
+
+                        <input type="text" id="name" name="name" required style="width:100%;padding:14px;margin-top:8px;">
+
+                    </div>
+
+
+                    <div style="margin-bottom:20px;">
+
+                        <label for="email">
+                    Email
+                </label>
+
+                        <input type="email" id="email" name="email" required style="width:100%;padding:14px;margin-top:8px;">
+
+                    </div>
+
+
+                    <div style="margin-bottom:20px;">
+
+                        <label for="website">
+                    Website
+                </label>
+
+                        <input type="url" id="website" name="website" placeholder="https://" style="width:100%;padding:14px;margin-top:8px;">
+
+                    </div>
+
+
+                    <div style="margin-bottom:20px;">
+
+                        <label for="service">
+                    Service
+                </label>
+
+                        <select id="service" name="service" style="width:100%;padding:14px;margin-top:8px;">
+
+                    <option value="">
+                        Select a service
+                    </option>
+
+                    <option value="Web Development">
+                        Web Development
+                    </option>
+
+                    <option value="SEO">
+                        SEO
+                    </option>
+
+                    <option value="Digital Solutions">
+                        Digital Solutions
+                    </option>
+
+                    <option value="Business Automation">
+                        Business Automation
+                    </option>
+
+                    <option value="Digital Consulting">
+                        Digital Consulting
+                    </option>
+
+                </select>
+
+                    </div>
+
+
+                    <div style="margin-bottom:20px;">
+
+                        <label for="message">
+                    Message
+                </label>
+
+                        <textarea id="message" name="message" rows="6" style="width:100%;padding:14px;margin-top:8px;"></textarea>
+
+                    </div>
+
+
+                    <button type="submit" class="button primary">
+
+                Send Message
+
+            </button>
+
+                </form>
+
+
+                <div id="formMessage" style="margin-top:20px;">
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 Syscom. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/api.js"></script>
+
+    <script>
+        const form =
+            document.getElementById("contactForm");
+
+        const message =
+            document.getElementById("formMessage");
+
+
+        form.addEventListener("submit", async(event) => {
+
+            event.preventDefault();
+
+            const formData =
+                new FormData(form);
+
+            const data =
+                Object.fromEntries(formData.entries());
+
+            try {
+
+                const response =
+                    await apiRequest(
+                        "/leads", {
+                            method: "POST",
+                            body: JSON.stringify(data)
+                        }
+                    );
+
+                message.innerHTML = `
+            <p>
+                ${response.message}
+            </p>
+        `;
+
+                form.reset();
+
+            } catch (error) {
+
+                message.innerHTML = `
+            <p>
+                ${error.message}
+            </p>
+        `;
+
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>
