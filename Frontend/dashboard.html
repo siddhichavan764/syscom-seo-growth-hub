@@ -7,11 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SEO Growth Dashboard | Syscom</title>
-
-    <meta name="description" content="Monitor SEO audits, keywords, backlinks, directories and leads.">
-
-    <meta name="robots" content="noindex, nofollow">
+    <title>SYSCOM SEO Growth Hub - Dashboard</title>
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -20,308 +16,924 @@
 
 <body>
 
-    <header class="site-header">
+    <!-- ============================= -->
+    <!-- SIDEBAR -->
+    <!-- ============================= -->
 
-        <div class="container navbar">
+    <aside class="sidebar">
 
-            <a href="index.html" class="logo">
-            Syscom
-        </a>
+        <div class="sidebar-logo">
 
-            <nav>
+            <h2>
+                SYSCOM
+            </h2>
 
-                <a href="index.html">
-                Website
-            </a>
-
-                <a href="blog.html">
-                Resources
-            </a>
-
-                <a href="seo-audit.html">
-                SEO Audit
-            </a>
-
-                <a href="contact.html">
-                Contact
-            </a>
-                <button type="button" class="btn btn-secondary" onclick="logout()">
-    Logout
-</button>
-            </nav>
+            <span>
+                SEO Growth Hub
+            </span>
 
         </div>
 
-    </header>
+
+        <nav class="sidebar-nav">
+
+            <a href="dashboard.html" class="nav-link active">
+                Dashboard
+            </a>
 
 
-    <main>
+            <a href="keyword-strategy.html" class="nav-link">
+                Keyword Strategy
+            </a>
 
-        <section class="dashboard-header">
 
-            <div class="container">
+            <a href="backlinks.html" class="nav-link">
+                Backlinks
+            </a>
 
-                <span class="eyebrow">
-            SEO MANAGEMENT
-        </span>
+
+            <a href="directory-listings.html" class="nav-link">
+                Directory Listings
+            </a>
+
+
+            <a href="social-distribution.html" class="nav-link">
+                Social Distribution
+            </a>
+
+
+            <a href="organic-traffic.html" class="nav-link">
+                Organic Traffic
+            </a>
+
+        </nav>
+
+
+        <button id="logoutBtn" class="logout-btn">
+            Logout
+        </button>
+
+    </aside>
+
+
+
+    <!-- ============================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================= -->
+
+    <main class="main-content">
+
+
+        <!-- ============================= -->
+        <!-- PAGE HEADER -->
+        <!-- ============================= -->
+
+        <header class="page-header">
+
+            <div>
 
                 <h1>
                     SEO Growth Dashboard
                 </h1>
 
                 <p>
-                    Monitor technical SEO, content, keywords, backlinks, directories and incoming leads.
+                    Monitor keywords, content, organic traffic and SEO-generated business opportunities.
                 </p>
 
             </div>
 
+        </header>
+
+
+
+        <!-- ============================= -->
+        <!-- KPI CARDS -->
+        <!-- ============================= -->
+
+        <section class="stats-grid">
+
+
+            <!-- KEYWORDS -->
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    High-Intent Keywords
+                </div>
+
+                <div class="stat-value" id="keywordCount">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Transactional opportunities
+                </div>
+
+            </div>
+
+
+
+            <!-- CONTENT -->
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    SEO Content
+                </div>
+
+                <div class="stat-value" id="contentCount">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Articles and landing pages
+                </div>
+
+            </div>
+
+
+
+            <!-- ORGANIC TRAFFIC -->
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Organic Visits
+                </div>
+
+                <div class="stat-value" id="visitCount">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Tracked organic traffic
+                </div>
+
+            </div>
+
+
+
+            <!-- LEADS -->
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Business Leads
+                </div>
+
+                <div class="stat-value" id="leadCount">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    SEO-generated enquiries
+                </div>
+
+            </div>
+
+
         </section>
 
 
-        <section class="section">
 
-            <div class="container">
+        <!-- ============================= -->
+        <!-- SEO GROWTH FUNNEL -->
+        <!-- ============================= -->
+        <section class="dashboard-section">
 
-                <div id="dashboardMessage" class="dashboard-message">
-                    Loading dashboard...
+            <div class="section-header">
+                <div>
+                    <h2>SEO Performance Overview</h2>
+                    <p>Track how SEO activity is translating into measurable business outcomes.</p>
+                </div>
+            </div>
+
+            <div class="performance-grid">
+
+                <div class="performance-card">
+                    <div class="performance-label">
+                        High-Intent Opportunities
+                    </div>
+
+                    <div class="performance-value" id="performanceKeywords">
+                        0
+                    </div>
+
+                    <div class="performance-description">
+                        Commercial, transactional and local keywords
+                    </div>
                 </div>
 
 
-                <!-- STAT CARDS -->
-
-                <div class="dashboard-stats">
-
-                    <div class="dashboard-stat">
-
-                        <span>
-                    SEO Audits
-                </span>
-
-                        <strong id="auditCount">
-                    0
-                </strong>
-
+                <div class="performance-card">
+                    <div class="performance-label">
+                        SEO Content
                     </div>
 
-
-                    <div class="dashboard-stat">
-
-                        <span>
-                    Keywords
-                </span>
-
-                        <strong id="keywordCount">
-                    0
-                </strong>
-
+                    <div class="performance-value" id="performanceContent">
+                        0
                     </div>
 
-
-                    <div class="dashboard-stat">
-
-                        <span>
-                    Backlinks
-                </span>
-
-                        <strong id="backlinkCount">
-                    0
-                </strong>
-
+                    <div class="performance-description">
+                        Published and planned SEO content
                     </div>
-
-
-                    <div class="dashboard-stat">
-
-                        <span>
-                    Directories
-                </span>
-
-                        <strong id="directoryCount">
-                    0
-                </strong>
-
-                    </div>
-
-
-                    <div class="dashboard-stat">
-
-                        <span>
-                    Leads
-                </span>
-
-                        <strong id="leadCount">
-                    0
-                </strong>
-
-                    </div>
-
                 </div>
 
 
-                <!-- SEO AUDIT -->
-
-                <div class="dashboard-section">
-
-                    <div class="dashboard-section-header">
-
-                        <div>
-
-                            <span class="eyebrow">
-                        TECHNICAL SEO
-                    </span>
-
-                            <h2>
-                                Recent SEO Audits
-                            </h2>
-
-                        </div>
-
-                        <div>
-
-                            <a href="seo-audit.html" class="btn btn-primary">
-        Run New Audit
-    </a>
-
-                            <a href="seo-management.html" class="btn btn-secondary">
-        Manage SEO
-    </a>
-
-                        </div>
-
+                <div class="performance-card">
+                    <div class="performance-label">
+                        Organic Visits
                     </div>
 
+                    <div class="performance-value" id="performanceVisits">
+                        0
+                    </div>
 
-                    <div id="auditTable" class="dashboard-table-wrapper"></div>
-
+                    <div class="performance-description">
+                        Tracked organic visits
+                    </div>
                 </div>
 
 
-                <!-- KEYWORDS -->
-
-                <div class="dashboard-section">
-
-                    <div class="dashboard-section-header">
-
-                        <div>
-
-                            <span class="eyebrow">
-                        SEARCH VISIBILITY
-                    </span>
-
-                            <h2>
-                                Keyword Tracking
-                            </h2>
-
-                        </div>
-
+                <div class="performance-card">
+                    <div class="performance-label">
+                        Business Leads
                     </div>
 
+                    <div class="performance-value" id="performanceLeads">
+                        0
+                    </div>
 
-                    <div id="keywordTable" class="dashboard-table-wrapper"></div>
-
+                    <div class="performance-description">
+                        SEO-generated enquiries
+                    </div>
                 </div>
 
 
-                <!-- BACKLINKS -->
-
-                <div class="dashboard-section">
-
-                    <div class="dashboard-section-header">
-
-                        <div>
-
-                            <span class="eyebrow">
-                        OFF-PAGE SEO
-                    </span>
-
-                            <h2>
-                                Backlink Opportunities
-                            </h2>
-
-                        </div>
-
+                <div class="performance-card">
+                    <div class="performance-label">
+                        Lead Conversion Rate
                     </div>
 
-
-                    <div id="backlinkTable" class="dashboard-table-wrapper"></div>
-
-                </div>
-
-
-                <!-- DIRECTORIES -->
-
-                <div class="dashboard-section">
-
-                    <div class="dashboard-section-header">
-
-                        <div>
-
-                            <span class="eyebrow">
-                        LOCAL & DISCOVERY
-                    </span>
-
-                            <h2>
-                                Directory Tracking
-                            </h2>
-
-                        </div>
-
+                    <div class="performance-value" id="conversionRate">
+                        0%
                     </div>
 
-
-                    <div id="directoryTable" class="dashboard-table-wrapper"></div>
-
-                </div>
-
-
-                <!-- LEADS -->
-
-                <div class="dashboard-section">
-
-                    <div class="dashboard-section-header">
-
-                        <div>
-
-                            <span class="eyebrow">
-                        CONVERSION
-                    </span>
-
-                            <h2>
-                                Recent Leads
-                            </h2>
-
-                        </div>
-
+                    <div class="performance-description">
+                        Leads divided by organic visits
                     </div>
-
-
-                    <div id="leadTable" class="dashboard-table-wrapper"></div>
-
                 </div>
 
             </div>
 
         </section>
+        <section class="dashboard-section">
+
+            <div class="section-header">
+                <div>
+                    <h2>Off-Page SEO Overview</h2>
+                    <p>Monitor backlink building, directory visibility and social content distribution.</p>
+                </div>
+            </div>
+
+            <div class="performance-grid">
+
+                <div class="performance-card">
+                    <div class="performance-label">
+                        Backlink Opportunities
+                    </div>
+
+                    <div class="performance-value" id="performanceBacklinks">
+                        0
+                    </div>
+
+                    <div class="performance-description">
+                        Links being researched or pursued
+                    </div>
+                </div>
+
+
+                <div class="performance-card">
+                    <div class="performance-label">
+                        Directory Listings
+                    </div>
+
+                    <div class="performance-value" id="performanceDirectories">
+                        0
+                    </div>
+
+                    <div class="performance-description">
+                        Business directories tracked
+                    </div>
+                </div>
+
+
+                <div class="performance-card">
+                    <div class="performance-label">
+                        Social Posts
+                    </div>
+
+                    <div class="performance-value" id="performanceSocial">
+                        0
+                    </div>
+
+                    <div class="performance-description">
+                        Content distribution records
+                    </div>
+                </div>
+
+
+                <div class="performance-card">
+                    <div class="performance-label">
+                        Published Posts
+                    </div>
+
+                    <div class="performance-value" id="performancePublishedSocial">
+                        0
+                    </div>
+
+                    <div class="performance-description">
+                        Social posts marked published
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+        <section class="dashboard-section">
+            <div class="section-header">
+                <h2>SEO Growth Workflow</h2>
+                <p>How SEO activities move from research to measurable business outcomes.</p>
+            </div>
+
+            <div class="workflow-grid">
+
+                <div class="workflow-card">
+                    <div class="workflow-number">01</div>
+                    <h3>Keyword Research</h3>
+                    <p>Identify high-intent keywords based on business relevance and search intent.</p>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-number">02</div>
+                    <h3>SEO Content</h3>
+                    <p>Create content and landing pages aligned with targeted search queries.</p>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-number">03</div>
+                    <h3>Off-Page SEO</h3>
+                    <p>Build relevant backlinks, directory listings and social distribution opportunities.</p>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-number">04</div>
+                    <h3>Organic Traffic</h3>
+                    <p>Monitor visits generated through search-focused content and SEO activities.</p>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-number">05</div>
+                    <h3>Business Leads</h3>
+                    <p>Connect SEO traffic with enquiries and measurable business outcomes.</p>
+                </div>
+
+            </div>
+        </section>
+        <section class="dashboard-section">
+            <div class="section-header">
+                <h2>SEO Health Summary</h2>
+                <p>Current status of the major SEO growth activities.</p>
+            </div>
+
+            <div class="health-grid">
+
+                <div class="health-card">
+                    <div class="health-status">ACTIVE</div>
+                    <h3>Keyword Strategy</h3>
+                    <p>High-intent keywords are being tracked for SEO targeting.</p>
+                </div>
+
+                <div class="health-card">
+                    <div class="health-status">ACTIVE</div>
+                    <h3>Content Strategy</h3>
+                    <p>SEO-focused content is being created and monitored.</p>
+                </div>
+
+                <div class="health-card">
+                    <div class="health-status">ACTIVE</div>
+                    <h3>Off-Page SEO</h3>
+                    <p>Backlink and directory opportunities are being managed.</p>
+                </div>
+
+                <div class="health-card">
+                    <div class="health-status">ACTIVE</div>
+                    <h3>Social Distribution</h3>
+                    <p>Content distribution and published social posts are tracked.</p>
+                </div>
+
+                <div class="health-card">
+                    <div class="health-status">TRACKING</div>
+                    <h3>Organic Performance</h3>
+                    <p>Organic visits and business leads are monitored as SEO outcomes.</p>
+                </div>
+
+            </div>
+        </section>
+        <section class="dashboard-section">
+            <div class="section-header">
+                <h2>Recent SEO Activity</h2>
+                <p>Latest activity across the SEO growth system.</p>
+            </div>
+
+            <div id="activityTimeline" class="activity-timeline">
+                <p class="activity-empty">Loading recent activity...</p>
+            </div>
+        </section>
+        <section class="dashboard-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        SEO Growth Funnel
+                    </h2>
+
+                    <p>
+                        From search intent to measurable business outcomes.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="growth-funnel">
+
+
+                <!-- STEP 1 -->
+
+                <div class="funnel-step">
+
+                    <div class="funnel-number">
+                        01
+                    </div>
+
+                    <div class="funnel-content">
+
+                        <h3>
+                            High-Intent Keywords
+                        </h3>
+
+                        <p>
+                            Identify keywords with strong commercial and transactional intent.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="funnel-arrow">
+                    ↓
+                </div>
+
+
+
+                <!-- STEP 2 -->
+
+                <div class="funnel-step">
+
+                    <div class="funnel-number">
+                        02
+                    </div>
+
+                    <div class="funnel-content">
+
+                        <h3>
+                            SEO Landing Pages
+                        </h3>
+
+                        <p>
+                            Map keywords to relevant service, product and landing pages.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="funnel-arrow">
+                    ↓
+                </div>
+
+
+
+                <!-- STEP 3 -->
+
+                <div class="funnel-step">
+
+                    <div class="funnel-number">
+                        03
+                    </div>
+
+                    <div class="funnel-content">
+
+                        <h3>
+                            Organic Traffic
+                        </h3>
+
+                        <p>
+                            Attract relevant users through useful search-focused content.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="funnel-arrow">
+                    ↓
+                </div>
+
+
+
+                <!-- STEP 4 -->
+
+                <div class="funnel-step">
+
+                    <div class="funnel-number">
+                        04
+                    </div>
+
+                    <div class="funnel-content">
+
+                        <h3>
+                            Business Enquiries
+                        </h3>
+
+                        <p>
+                            Turn relevant organic visitors into qualified enquiries.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="funnel-arrow">
+                    ↓
+                </div>
+
+
+
+                <!-- STEP 5 -->
+
+                <div class="funnel-step">
+
+                    <div class="funnel-number">
+                        05
+                    </div>
+
+                    <div class="funnel-content">
+
+                        <h3>
+                            Conversions
+                        </h3>
+
+                        <p>
+                            Measure the business impact generated by SEO.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- SEO OPERATIONS -->
+        <!-- ============================= -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        SEO Operations
+                    </h2>
+
+                    <p>
+                        Manage the major components of the organic growth strategy.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="module-grid">
+
+
+                <!-- KEYWORD -->
+
+                <a href="keyword-strategy.html" class="module-card">
+
+                    <div class="module-icon">
+                        K
+                    </div>
+
+                    <h3>
+                        Keyword Strategy
+                    </h3>
+
+                    <p>
+                        Organize high-intent keywords by search intent, location and priority.
+                    </p>
+
+                    <span>
+                        Manage Keywords →
+                    </span>
+
+                </a>
+
+
+
+                <!-- BACKLINKS -->
+
+                <a href="backlinks.html" class="module-card">
+
+                    <div class="module-icon">
+                        B
+                    </div>
+
+                    <h3>
+                        Backlinks
+                    </h3>
+
+                    <p>
+                        Track legitimate backlink opportunities, outreach and verified links.
+                    </p>
+
+                    <span>
+                        Manage Backlinks →
+                    </span>
+
+                </a>
+
+
+
+                <!-- DIRECTORIES -->
+
+                <a href="directory-listings.html" class="module-card">
+
+                    <div class="module-icon">
+                        D
+                    </div>
+
+                    <h3>
+                        Directory Listings
+                    </h3>
+
+                    <p>
+                        Track relevant business directories and listing submission progress.
+                    </p>
+
+                    <span>
+                        Manage Directories →
+                    </span>
+
+                </a>
+
+
+
+                <!-- SOCIAL -->
+
+                <a href="social-distribution.html" class="module-card">
+
+                    <div class="module-icon">
+                        S
+                    </div>
+
+                    <h3>
+                        Social Distribution
+                    </h3>
+
+                    <p>
+                        Manage content distribution and referral traffic from social platforms.
+                    </p>
+
+                    <span>
+                        Manage Social →
+                    </span>
+
+                </a>
+
+
+
+                <!-- ORGANIC -->
+
+                <a href="organic-traffic.html" class="module-card">
+
+                    <div class="module-icon">
+                        O
+                    </div>
+
+                    <h3>
+                        Organic Traffic
+                    </h3>
+
+                    <p>
+                        Manage SEO content, organic visits and leads generated.
+                    </p>
+
+                    <span>
+                        View Organic Traffic →
+                    </span>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- SEO STRATEGY -->
+        <!-- ============================= -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        White-Hat SEO Strategy
+                    </h2>
+
+                    <p>
+                        Sustainable methods used to build long-term organic visibility.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="strategy-grid">
+
+
+                <div class="strategy-item">
+
+                    <h3>
+                        High-Intent Targeting
+                    </h3>
+
+                    <p>
+                        Prioritize keywords according to search intent and business relevance.
+                    </p>
+
+                </div>
+
+
+
+                <div class="strategy-item">
+
+                    <h3>
+                        Useful Content
+                    </h3>
+
+                    <p>
+                        Create original content that answers genuine search needs.
+                    </p>
+
+                </div>
+
+
+
+                <div class="strategy-item">
+
+                    <h3>
+                        Legitimate Backlinks
+                    </h3>
+
+                    <p>
+                        Build relevant links through outreach, directories, partnerships and useful resources.
+                    </p>
+
+                </div>
+
+
+
+                <div class="strategy-item">
+
+                    <h3>
+                        Internal Linking
+                    </h3>
+
+                    <p>
+                        Connect relevant pages to improve navigation and content discoverability.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- MEASUREMENT NOTE -->
+        <!-- ============================= -->
+
+        <section class="dashboard-note">
+
+            <strong>
+                Measurement note:
+            </strong>
+
+            <span>
+                Organic traffic and lead values are application
+                tracking fields. Until Google Analytics or Search
+                Console integration is connected, manually entered
+                values should be treated as demo or test data.
+            </span>
+
+        </section>
+
 
     </main>
 
 
-    <footer class="site-footer">
 
-        <div class="container">
+    <!-- ============================= -->
+    <!-- SCRIPTS -->
+    <!-- ============================= -->
 
-            <p>
-                © 2026 Syscom. All rights reserved.
-            </p>
-
-        </div>
-
-    </footer>
+    <script src="js/api.js"></script>
 
     <script src="js/auth.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/logout.js"></script>
+
+
+    <script>
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                const logoutBtn =
+                    document.getElementById(
+                        "logoutBtn"
+                    );
+
+
+                if (logoutBtn) {
+
+                    logoutBtn.addEventListener(
+                        "click",
+                        function() {
+
+                            localStorage.removeItem(
+                                "syscom_token"
+                            );
+
+                            localStorage.removeItem(
+                                "syscom_user"
+                            );
+
+                            window.location.href =
+                                "login.html";
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+    </script>
+
+
     <script src="js/dashboard.js"></script>
+
 
 </body>
 

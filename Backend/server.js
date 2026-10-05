@@ -1,3 +1,5 @@
+const organicTrafficRoutes =
+    require("./routes/organicTrafficRoutes");
 const backlinkRoutes = require("./routes/backlinkRoutes");
 const directoryRoutes = require("./routes/directoryRoutes");
 const auditRoutes = require("./routes/auditRoutes");
@@ -20,7 +22,10 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use("/api", function(req, res, next) {
+    res.setHeader("Cache-Control", "no-store");
+    next();
+});
 app.get("/", (req, res) => {
     res.json({
         success: true,
@@ -59,6 +64,10 @@ app.use("/api/directories", directoryRoutes);
 app.use("/api/seo-audits", auditRoutes);
 app.use("/api/social", socialRoutes);
 app.use("/api/auth", authRoutes);
+app.use(
+    "/api/organic-traffic",
+    organicTrafficRoutes
+);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

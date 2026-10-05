@@ -26,6 +26,9 @@ exports.createKeyword = async(req, res) => {
         const {
             keyword,
             search_intent,
+            location,
+            search_volume,
+            competition,
             target_url,
             priority,
             status
@@ -40,12 +43,24 @@ exports.createKeyword = async(req, res) => {
 
         const [result] = await db.query(
             `INSERT INTO keywords
-            (keyword, search_intent, target_url, priority, status)
-            VALUES (?, ?, ?, ?, ?)`, [
+            (
+                keyword,
+                search_intent,
+                location,
+                search_volume,
+                competition,
+                target_url,
+                priority,
+                status
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [
                 keyword,
                 search_intent || null,
+                location || null,
+                search_volume || 0,
+                competition || "To Research",
                 target_url || null,
-                priority || "medium",
+                priority || "Medium",
                 status || "planned"
             ]
         );
@@ -55,6 +70,7 @@ exports.createKeyword = async(req, res) => {
             message: "Keyword created successfully",
             id: result.insertId
         });
+
     } catch (error) {
         console.error(error);
 

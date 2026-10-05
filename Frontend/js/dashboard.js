@@ -4,626 +4,439 @@ document.addEventListener(
 );
 
 
+// ==========================================
+// LOAD DASHBOARD
+// ==========================================
+
 async function loadDashboard() {
 
     try {
 
         const [
-            audits,
             keywords,
+            organicContent,
+            leads,
             backlinks,
             directories,
-            leads
+            socialPosts
         ] = await Promise.all([
 
-            apiRequest("/seo-audits"),
-
             apiRequest("/keywords"),
+
+            apiRequest("/organic-traffic"),
+
+            apiRequest("/leads"),
 
             apiRequest("/backlinks"),
 
             apiRequest("/directories"),
 
-            apiRequest("/leads")
+            apiRequest("/social")
 
         ]);
+        const keywordData =
+            keywords.data || [];
 
 
-        document.getElementById(
-                "dashboardMessage"
-            ).textContent =
-            "Dashboard loaded successfully.";
+        const contentData =
+            organicContent.data || [];
 
 
-        document.getElementById(
-                "auditCount"
-            ).textContent =
-            audits.count;
+        const leadData =
+            leads.data || [];
+        const backlinkData =
+            backlinks.data || [];
 
 
-        document.getElementById(
-                "keywordCount"
-            ).textContent =
-            keywords.count;
+        const directoryData =
+            directories.data || [];
 
 
-        document.getElementById(
-                "backlinkCount"
-            ).textContent =
-            backlinks.count;
+        const socialData =
+            socialPosts.data || [];
+
+        // ==========================================
+        // HIGH-INTENT KEYWORDS
+        // ==========================================
+
+        const highIntentKeywords =
+            keywordData.filter(function(item) {
+
+                const intent =
+                    String(
+                        item.search_intent || ""
+                    ).toLowerCase();
 
 
-        document.getElementById(
-                "directoryCount"
-            ).textContent =
-            directories.count;
+                return (
+                    intent === "transactional" ||
+                    intent === "commercial" ||
+                    intent === "local"
+                );
+
+            });
 
 
-        document.getElementById(
-                "leadCount"
-            ).textContent =
-            leads.count;
+        const keywordCount =
+            highIntentKeywords.length;
 
 
-        renderAudits(
-            audits.data
+        // ==========================================
+        // SEO CONTENT
+        // ==========================================
+
+        const contentCount =
+            contentData.length;
+
+
+        // ==========================================
+        // ORGANIC VISITS
+        // ==========================================
+
+        let totalVisits = 0;
+
+
+        contentData.forEach(function(item) {
+
+            totalVisits +=
+                Number(
+                    item.organic_visits || 0
+                );
+
+        });
+
+
+        // ==========================================
+        // BUSINESS LEADS
+        // ==========================================
+
+        const leadCount =
+            leadData.length;
+
+        const backlinkCount =
+            backlinkData.length;
+
+
+        const directoryCount =
+            directoryData.length;
+
+
+        const socialCount =
+            socialData.length;
+
+
+        const publishedSocialCount =
+            socialData.filter(function(item) {
+
+                return String(
+                    item.status || ""
+                ).toLowerCase() === "published";
+
+            }).length;
+        // ==========================================
+        // CONVERSION RATE
+        // ==========================================
+
+        let conversionRate = 0;
+
+
+        if (totalVisits > 0) {
+
+            conversionRate =
+                (leadCount / totalVisits) * 100;
+
+        }
+
+
+        // ==========================================
+        // MAIN KPI CARDS
+        // ==========================================
+
+        setText(
+            "keywordCount",
+            keywordCount
         );
 
 
-        renderKeywords(
-            keywords.data
+        setText(
+            "contentCount",
+            contentCount
         );
 
 
-        renderBacklinks(
-            backlinks.data
+        setText(
+            "visitCount",
+            totalVisits
         );
 
 
-        renderDirectories(
-            directories.data
+        setText(
+            "leadCount",
+            leadCount
         );
 
 
-        renderLeads(
-            leads.data
+        // ==========================================
+        // PERFORMANCE OVERVIEW
+        // ==========================================
+
+        setText(
+            "performanceKeywords",
+            keywordCount
         );
 
 
+        setText(
+            "performanceContent",
+            contentCount
+        );
+
+
+        setText(
+            "performanceVisits",
+            totalVisits
+        );
+
+
+        setText(
+            "performanceLeads",
+            leadCount
+        );
+
+
+        setText(
+            "conversionRate",
+            conversionRate.toFixed(1) + "%"
+        );
+        setText(
+            "performanceBacklinks",
+            backlinkCount
+        );
+
+
+        setText(
+            "performanceDirectories",
+            directoryCount
+        );
+
+
+        setText(
+            "performanceSocial",
+            socialCount
+        );
+
+
+        setText(
+            "performancePublishedSocial",
+            publishedSocialCount
+        );
+
+        console.log(
+            "Dashboard loaded successfully."
+        );
+        loadActivityTimeline();
     } catch (error) {
 
-        console.error(error);
-
-        document.getElementById(
-                "dashboardMessage"
-            ).textContent =
-            "Unable to load dashboard data.";
+        console.error(
+            "Dashboard loading error:",
+            error
+        );
 
     }
 
 }
 
 
-function renderAudits(audits) {
+// ==========================================
+// SET TEXT SAFELY
+// ==========================================
 
-    const container =
+function setText(
+    elementId,
+    value
+) {
+
+    const element =
         document.getElementById(
-            "auditTable"
+            elementId
         );
 
 
-    if (!audits.length) {
+    if (element) {
 
-        container.innerHTML =
-            "<p>No SEO audits found yet.</p>";
-
-        return;
+        element.textContent =
+            value;
 
     }
 
-
-    container.innerHTML = `
-
-        <table class="dashboard-table">
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        URL
-                    </th>
-
-                    <th>
-                        Score
-                    </th>
-
-                    <th>
-                        Title
-                    </th>
-
-                    <th>
-                        Meta
-                    </th>
-
-                    <th>
-                        Technical
-                    </th>
-
-                    <th>
-                        Date
-                    </th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                ${audits.slice(0, 10).map(
-                    audit => `
-
-                    <tr>
-
-                        <td>
-                            ${escapeHtml(
-                                audit.url
-                            )}
-                        </td>
-
-                        <td>
-                            <strong>
-                                ${audit.score}/100
-                            </strong>
-                        </td>
-
-                        <td>
-                            ${audit.title_score}
-                        </td>
-
-                        <td>
-                            ${audit.meta_score}
-                        </td>
-
-                        <td>
-                            ${audit.technical_score}
-                        </td>
-
-                        <td>
-                            ${formatDate(
-                                audit.created_at
-                            )}
-                        </td>
-
-                    </tr>
-
-                `
-                ).join("")}
-
-            </tbody>
-
-        </table>
-
-    `;
-
 }
+async function loadActivityTimeline() {
+    const timeline =
+        document.getElementById("activityTimeline");
 
+    if (!timeline) {
+        return;
+    }
 
-function renderKeywords(keywords) {
+    try {
+        const [
+            keywords,
+            content,
+            backlinks,
+            directories,
+            socialPosts
+        ] = await Promise.all([
+            apiRequest("/keywords"),
+            apiRequest("/organic-traffic"),
+            apiRequest("/backlinks"),
+            apiRequest("/directories"),
+            apiRequest("/social")
+        ]);
 
-    const container =
-        document.getElementById(
-            "keywordTable"
+        const activities = [];
+
+        const keywordData =
+            keywords.data || [];
+
+        keywordData.forEach(function(item) {
+            activities.push({
+                type: "Keyword",
+                title: "Keyword added",
+                description: item.keyword || "Keyword strategy updated",
+                date: item.created_at || ""
+            });
+        });
+
+        const contentData =
+            content.data || [];
+
+        contentData.forEach(function(item) {
+            activities.push({
+                type: "Content",
+                title: "SEO content created",
+                description: item.title || "SEO content updated",
+                date: item.created_at || ""
+            });
+        });
+
+        const backlinkData =
+            backlinks.data || [];
+
+        backlinkData.forEach(function(item) {
+            activities.push({
+                type: "Backlink",
+                title: "Backlink opportunity added",
+                description: item.domain ||
+                    item.url ||
+                    "Backlink opportunity",
+                date: item.created_at || ""
+            });
+        });
+
+        const directoryData =
+            directories.data || [];
+
+        directoryData.forEach(function(item) {
+            activities.push({
+                type: "Directory",
+                title: "Directory listing updated",
+                description: item.name || "Directory listing",
+                date: item.created_at || ""
+            });
+        });
+
+        const socialData =
+            socialPosts.data || [];
+
+        socialData.forEach(function(item) {
+            activities.push({
+                type: "Social",
+                title: "Social post updated",
+                description: item.post_title ||
+                    item.platform ||
+                    "Social distribution activity",
+                date: item.created_at || ""
+            });
+        });
+
+        activities.sort(function(a, b) {
+            return new Date(b.date) -
+                new Date(a.date);
+        });
+
+        const recentActivities =
+            activities.slice(0, 8);
+
+        if (recentActivities.length === 0) {
+            timeline.innerHTML =
+                '<p class="activity-empty">' +
+                'No SEO activity recorded yet.' +
+                '</p>';
+
+            return;
+        }
+
+        timeline.innerHTML =
+            recentActivities.map(function(item) {
+
+                return `
+                    <div class="activity-item">
+                        <div class="activity-dot"></div>
+
+                        <div class="activity-content">
+                            <div class="activity-top">
+                                <span class="activity-type">
+                                    ${item.type}
+                                </span>
+
+                                <span class="activity-date">
+                                    ${formatActivityDate(item.date)}
+                                </span>
+                            </div>
+
+                            <h3>
+                                ${item.title}
+                            </h3>
+
+                            <p>
+                                ${item.description}
+                            </p>
+                        </div>
+                    </div>
+                `;
+
+            }).join("");
+
+    } catch (error) {
+        console.error(
+            "Activity timeline error:",
+            error
         );
 
-
-    if (!keywords.length) {
-
-        container.innerHTML =
-            "<p>No keywords added yet.</p>";
-
-        return;
-
+        timeline.innerHTML =
+            '<p class="activity-empty">' +
+            'Unable to load SEO activity.' +
+            '</p>';
     }
-
-
-    container.innerHTML = `
-
-        <table class="dashboard-table">
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        Keyword
-                    </th>
-
-                    <th>
-                        Intent
-                    </th>
-
-                    <th>
-                        Priority
-                    </th>
-
-                    <th>
-                        Status
-                    </th>
-
-                    <th>
-                        Target URL
-                    </th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                ${keywords.slice(0, 10).map(
-                    keyword => `
-
-                    <tr>
-
-                        <td>
-                            ${escapeHtml(
-                                keyword.keyword
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                keyword.search_intent ||
-                                "-"
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                keyword.priority ||
-                                "-"
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                keyword.status ||
-                                "-"
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                keyword.target_url ||
-                                "-"
-                            )}
-                        </td>
-
-                    </tr>
-
-                `
-                ).join("")}
-
-            </tbody>
-
-        </table>
-
-    `;
-
 }
 
-
-function renderBacklinks(backlinks) {
-
-    const container =
-        document.getElementById(
-            "backlinkTable"
-        );
-
-
-    if (!backlinks.length) {
-
-        container.innerHTML =
-            "<p>No backlink opportunities added yet.</p>";
-
-        return;
-
+function formatActivityDate(dateValue) {
+    if (!dateValue) {
+        return "Recently";
     }
 
+    const date =
+        new Date(dateValue);
 
-    container.innerHTML = `
-
-        <table class="dashboard-table">
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        Domain
-                    </th>
-
-                    <th>
-                        URL
-                    </th>
-
-                    <th>
-                        Anchor Text
-                    </th>
-
-                    <th>
-                        Status
-                    </th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                ${backlinks.slice(0, 10).map(
-                    backlink => `
-
-                    <tr>
-
-                        <td>
-                            ${escapeHtml(
-                                backlink.domain
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                backlink.url ||
-                                "-"
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                backlink.anchor_text ||
-                                "-"
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                backlink.status ||
-                                "-"
-                            )}
-                        </td>
-
-                    </tr>
-
-                `
-                ).join("")}
-
-            </tbody>
-
-        </table>
-
-    `;
-
-}
-
-
-function renderDirectories(directories) {
-
-    const container =
-        document.getElementById(
-            "directoryTable"
-        );
-
-
-    if (!directories.length) {
-
-        container.innerHTML =
-            "<p>No directories added yet.</p>";
-
-        return;
-
+    if (isNaN(date.getTime())) {
+        return "Recently";
     }
 
-
-    container.innerHTML = `
-
-        <table class="dashboard-table">
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        Directory
-                    </th>
-
-                    <th>
-                        Category
-                    </th>
-
-                    <th>
-                        URL
-                    </th>
-
-                    <th>
-                        Status
-                    </th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                ${directories.slice(0, 10).map(
-                    directory => `
-
-                    <tr>
-
-                        <td>
-                            ${escapeHtml(
-                                directory.name
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                directory.category ||
-                                "-"
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                directory.url ||
-                                "-"
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                directory.status ||
-                                "-"
-                            )}
-                        </td>
-
-                    </tr>
-
-                `
-                ).join("")}
-
-            </tbody>
-
-        </table>
-
-    `;
-
-}
-
-
-function renderLeads(leads) {
-
-    const container =
-        document.getElementById(
-            "leadTable"
-        );
-
-
-    if (!leads.length) {
-
-        container.innerHTML =
-            "<p>No leads received yet.</p>";
-
-        return;
-
-    }
-
-
-    container.innerHTML = `
-
-        <table class="dashboard-table">
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        Name
-                    </th>
-
-                    <th>
-                        Email
-                    </th>
-
-                    <th>
-                        Service
-                    </th>
-
-                    <th>
-                        Website
-                    </th>
-
-                    <th>
-                        Date
-                    </th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                ${leads.slice(0, 10).map(
-                    lead => `
-
-                    <tr>
-
-                        <td>
-                            ${escapeHtml(
-                                lead.name
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                lead.email
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                lead.service ||
-                                "-"
-                            )}
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                lead.website ||
-                                "-"
-                            )}
-                        </td>
-
-                        <td>
-                            ${formatDate(
-                                lead.created_at
-                            )}
-                        </td>
-
-                    </tr>
-
-                `
-                ).join("")}
-
-            </tbody>
-
-        </table>
-
-    `;
-
-}
-
-
-function formatDate(date) {
-
-    if (!date) {
-        return "-";
-    }
-
-    return new Date(date)
-        .toLocaleDateString();
-
-}
-
-
-function escapeHtml(value) {
-
-    return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-
+    return date.toLocaleDateString(
+        "en-IN", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }
+    );
 }

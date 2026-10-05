@@ -3,10 +3,10 @@ const express = require("express");
 const router = express.Router();
 
 const {
-    getSocialPosts,
-    createSocialPost,
-    updateSocialPost
-} = require("../controllers/socialController");
+    getOrganicContent,
+    createOrganicContent,
+    updateOrganicMetrics
+} = require("../controllers/organicTrafficController");
 
 const {
     authenticateToken
@@ -16,21 +16,21 @@ const {
 router.get(
     "/",
     authenticateToken,
-    getSocialPosts
+    getOrganicContent
 );
 
 
 router.post(
     "/",
     authenticateToken,
-    createSocialPost
+    createOrganicContent
 );
 
 
 router.put(
-    "/:id",
+    "/:id/metrics",
     authenticateToken,
-    updateSocialPost
+    updateOrganicMetrics
 );
 
 

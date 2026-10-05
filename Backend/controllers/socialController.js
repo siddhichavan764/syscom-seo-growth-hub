@@ -3,14 +3,9 @@ const db = require("../config/db");
 // Get all social posts
 exports.getSocialPosts = async(req, res) => {
     try {
-        const [posts] = await db.query(`
-            SELECT 
-                sp.*,
-                a.title AS article_title
-            FROM social_posts sp
-            LEFT JOIN articles a ON sp.article_id = a.id
-            ORDER BY sp.created_at DESC
-        `);
+        const [posts] = await db.query(
+            "SELECT * FROM social_posts ORDER BY created_at DESC"
+        );
 
         res.json({
             success: true,
@@ -42,12 +37,14 @@ exports.createSocialPost = async(req, res) => {
             referral_visits
         } = req.body;
 
+
         if (!platform) {
             return res.status(400).json({
                 success: false,
                 message: "Platform is required"
             });
         }
+
 
         const [result] = await db.query(
             `INSERT INTO social_posts
@@ -71,6 +68,7 @@ exports.createSocialPost = async(req, res) => {
             ]
         );
 
+
         res.status(201).json({
             success: true,
             message: "Social post created successfully",
@@ -88,39 +86,37 @@ exports.createSocialPost = async(req, res) => {
 };
 
 
-// Update social post
+// Update social post status
 exports.updateSocialPost = async(req, res) => {
     try {
         const { id } = req.params;
 
         const {
-            article_id,
-            platform,
-            post_url,
-            post_title,
             status,
-            published_at,
-            referral_visits
+            referral_visits,
+            published_at
         } = req.body;
+        let formattedPublishedAt = null;
 
+        if (published_at) {
+            const date = new Date(published_at);
+
+            if (!isNaN(date.getTime())) {
+                formattedPublishedAt =
+                    date.toISOString()
+                    .slice(0, 19)
+                    .replace("T", " ");
+            }
+        }
         const [result] = await db.query(
             `UPDATE social_posts
-             SET
-                article_id = ?,
-                platform = ?,
-                post_url = ?,
-                post_title = ?,
-                status = ?,
-                published_at = ?,
-                referral_visits = ?
+             SET status = ?,
+                 referral_visits = ?,
+                 published_at = ?
              WHERE id = ?`, [
-                article_id || null,
-                platform,
-                post_url || null,
-                post_title || null,
                 status || "planned",
-                published_at || null,
-                referral_visits || 0,
+                Number(referral_visits) || 0,
+                formattedPublishedAt,
                 id
             ]
         );
@@ -134,7 +130,7 @@ exports.updateSocialPost = async(req, res) => {
 
         res.json({
             success: true,
-            message: "Social post updated successfully"
+            message: "Social post metrics updated successfully"
         });
 
     } catch (error) {
@@ -142,39 +138,7 @@ exports.updateSocialPost = async(req, res) => {
 
         res.status(500).json({
             success: false,
-            message: "Failed to update social post"
-        });
-    }
-};
-
-
-// Delete social post
-exports.deleteSocialPost = async(req, res) => {
-    try {
-        const { id } = req.params;
-
-        const [result] = await db.query(
-            "DELETE FROM social_posts WHERE id = ?", [id]
-        );
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({
-                success: false,
-                message: "Social post not found"
-            });
-        }
-
-        res.json({
-            success: true,
-            message: "Social post deleted successfully"
-        });
-
-    } catch (error) {
-        console.error(error);
-
-        res.status(500).json({
-            success: false,
-            message: "Failed to delete social post"
+            message: "Failed to update social post metrics"
         });
     }
 };

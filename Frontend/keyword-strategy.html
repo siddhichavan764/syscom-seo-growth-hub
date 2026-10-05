@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Keyword Strategy | Syscom SEO Growth Hub</title>
+
+    <meta name="description" content="Manage high-intent SEO keywords, search intent, locations, competition and target pages for Syscom.">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+
+        <div class="container">
+
+            <h1>Keyword Strategy</h1>
+
+            <p>
+                Plan and manage high-intent keywords for sustainable organic growth.
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- Summary -->
+
+        <section class="keyword-summary">
+
+            <div class="summary-card">
+                <span>Total Keywords</span>
+                <strong id="totalKeywords">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>High Priority</span>
+                <strong id="highPriority">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Transactional</span>
+                <strong id="transactionalKeywords">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Planned</span>
+                <strong id="plannedKeywords">0</strong>
+            </div>
+
+        </section>
+
+
+        <!-- Keyword Table -->
+
+        <section class="keyword-section">
+            <div id="keywordFormContainer" class="keyword-form-container" style="display: none;">
+
+                <h3>Add Keyword</h3>
+
+                <form id="keywordForm">
+
+                    <div class="form-grid">
+
+                        <div>
+                            <label for="keyword">Keyword</label>
+                            <input type="text" id="keyword" name="keyword" placeholder="e.g. web development company Pune" required>
+                        </div>
+
+                        <div>
+                            <label for="searchIntent">Search Intent</label>
+                            <select id="searchIntent" name="search_intent">
+                                <option value="Transactional">Transactional</option>
+                                <option value="Commercial">Commercial</option>
+                                <option value="Informational">Informational</option>
+                                <option value="Local">Local</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="location">Location</label>
+                            <input type="text" id="location" name="location" placeholder="e.g. Pune">
+                        </div>
+
+                        <div>
+                            <label for="searchVolume">Search Volume</label>
+                            <input type="number" id="searchVolume" name="search_volume" min="0" value="0">
+                        </div>
+
+                        <div>
+                            <label for="competition">Competition</label>
+                            <select id="competition" name="competition">
+                                <option value="To Research">To Research</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="targetUrl">Target URL</label>
+                            <input type="text" id="targetUrl" name="target_url" placeholder="/services.html">
+                        </div>
+
+                        <div>
+                            <label for="priority">Priority</label>
+                            <select id="priority" name="priority">
+                                <option value="High">High</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="status">Status</label>
+                            <select id="status" name="status">
+                                <option value="planned">Planned</option>
+                                <option value="targeting">Targeting</option>
+                                <option value="ranking">Ranking</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="primary-btn">
+                            Save Keyword
+                        </button>
+
+                        <button type="button" id="cancelKeywordBtn" class="secondary-btn">
+                            Cancel
+                        </button>
+
+                    </div>
+
+                    <p id="keywordFormMessage"></p>
+
+                </form>
+
+            </div>
+            <div class="section-header">
+
+                <div>
+                    <h2>High-Intent Keywords</h2>
+
+                    <p>
+                        Target keywords based on search intent, business relevance and location.
+                    </p>
+                </div>
+
+                <button id="addKeywordBtn" class="primary-btn" type="button">
+                    + Add Keyword
+                </button>
+
+            </div>
+
+            <div class="keyword-filters">
+
+                <input type="search" id="keywordSearch" placeholder="Search keywords...">
+
+                <select id="intentFilter">
+            
+                    <option value="all">
+                        All Intents
+                    </option>
+            
+                    <option value="Transactional">
+                        Transactional
+                    </option>
+            
+                    <option value="Commercial">
+                        Commercial
+                    </option>
+            
+                    <option value="Informational">
+                        Informational
+                    </option>
+            
+                    <option value="Local">
+                        Local
+                    </option>
+            
+                </select>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Keyword</th>
+                            <th>Intent</th>
+                            <th>Location</th>
+                            <th>Volume</th>
+                            <th>Competition</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="keywordTableBody">
+
+                        <tr>
+                            <td colspan="7">
+                                Loading keywords...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/keyword-strategy.js"></script>
+
+</body>
+
+</html>

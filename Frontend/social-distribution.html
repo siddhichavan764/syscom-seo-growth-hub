@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Social Distribution | Syscom SEO Growth Hub</title>
+
+    <meta name="description" content="Manage and track social distribution for Syscom SEO content.">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body>
+
+    <div class="dashboard-container">
+
+        <header class="page-header">
+
+            <div>
+
+                <h1>
+                    Social Distribution
+                </h1>
+
+                <p>
+                    Manage social content distribution and referral traffic.
+                </p>
+
+            </div>
+
+            <button id="addSocialPostBtn" class="primary-btn">
+                + Add Social Post
+            </button>
+
+        </header>
+
+
+        <!-- SUMMARY -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <h3>
+                    Total Posts
+                </h3>
+
+                <p id="totalPosts">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Planned
+                </h3>
+
+                <p id="plannedPosts">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Published
+                </h3>
+
+                <p id="publishedPosts">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Referral Visits
+                </h3>
+
+                <p id="referralVisits">
+                    0
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FORM -->
+
+        <section id="socialFormContainer" class="form-section" style="display: none;">
+
+            <h2>
+                Add Social Post
+            </h2>
+
+
+            <form id="socialPostForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="socialPlatform">
+                            Platform
+                        </label>
+
+                        <select id="socialPlatform" required>
+
+                            <option value="">
+                                Select Platform
+                            </option>
+
+                            <option value="LinkedIn">
+                                LinkedIn
+                            </option>
+
+                            <option value="Facebook">
+                                Facebook
+                            </option>
+
+                            <option value="Instagram">
+                                Instagram
+                            </option>
+
+                            <option value="X">
+                                X
+                            </option>
+
+                            <option value="Pinterest">
+                                Pinterest
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="socialTitle">
+                            Post Title
+                        </label>
+
+                        <input type="text" id="socialTitle" placeholder="Enter post title">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="socialPostUrl">
+                            Post URL
+                        </label>
+
+                        <input type="url" id="socialPostUrl" placeholder="https://...">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="socialStatus">
+                            Status
+                        </label>
+
+                        <select id="socialStatus">
+
+                            <option value="planned">
+                                Planned
+                            </option>
+
+                            <option value="published">
+                                Published
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div id="socialFormMessage" class="form-message"></div>
+
+
+                <div class="form-actions">
+
+                    <button type="submit" class="primary-btn">
+                        Save Social Post
+                    </button>
+
+                    <button type="button" id="cancelSocialBtn" class="secondary-btn">
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- FILTERS -->
+
+        <section class="filter-section">
+
+            <input type="text" id="socialSearch" placeholder="Search posts or platforms...">
+
+
+            <select id="socialStatusFilter">
+
+                <option value="all">
+                    All Statuses
+                </option>
+
+                <option value="planned">
+                    Planned
+                </option>
+
+                <option value="published">
+                    Published
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- TABLE -->
+
+        <section class="table-section">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Platform
+                        </th>
+
+                        <th>
+                            Post Title
+                        </th>
+
+                        <th>
+                            Post URL
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Referral Visits
+                        </th>
+
+                        <th>
+                            Published
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="socialTableBody">
+
+                    <tr>
+
+                        <td colspan="6">
+                            Loading social posts...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </div>
+
+
+    <script src="js/api.js"></script>
+
+    <script src="js/auth.js"></script>
+
+    <script src="js/social-distribution.js"></script>
+
+</body>
+
+</html>

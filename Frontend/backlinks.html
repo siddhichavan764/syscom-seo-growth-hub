@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Backlink Management | Syscom SEO Growth Hub</title>
+
+    <meta name="description" content="Manage and monitor legitimate backlink opportunities for Syscom.">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+    <main class="page-container">
+
+        <!-- PAGE HEADER -->
+
+        <section class="page-header">
+
+            <h1>Backlink Management</h1>
+
+            <p>
+                Track legitimate backlink opportunities, outreach targets and acquired links.
+            </p>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="summary-cards">
+
+            <div class="summary-card">
+
+                <h3>Total Backlinks</h3>
+
+                <strong id="totalBacklinks">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>Potential</h3>
+
+                <strong id="potentialBacklinks">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>Outreach</h3>
+
+                <strong id="outreachBacklinks">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>Verified</h3>
+
+                <strong id="verifiedBacklinks">
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- BACKLINK SECTION -->
+
+        <section class="keyword-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Backlink Opportunities</h2>
+
+                    <p>
+                        Build a sustainable backlink profile through relevant and legitimate sources.
+                    </p>
+
+                </div>
+
+
+                <button id="addBacklinkBtn" class="primary-btn" type="button">
+
+                    + Add Backlink
+
+                </button>
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <div class="keyword-filters">
+
+                <input type="search" id="backlinkSearch" placeholder="Search domains...">
+
+
+                <select id="backlinkStatusFilter">
+
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="potential">
+                        Potential
+                    </option>
+
+                    <option value="outreach">
+                        Outreach
+                    </option>
+
+                    <option value="placed">
+                        Placed
+                    </option>
+
+                    <option value="verified">
+                        Verified
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ADD BACKLINK FORM -->
+
+            <div id="backlinkFormContainer" class="keyword-form-container" style="display: none;">
+
+                <h3>Add Backlink</h3>
+
+
+                <form id="backlinkForm">
+
+                    <div class="form-grid">
+
+
+                        <div>
+
+                            <label for="domain">
+                                Domain
+                            </label>
+
+                            <input type="text" id="domain" placeholder="example.com" required>
+
+                        </div>
+
+
+                        <div>
+
+                            <label for="backlinkUrl">
+                                URL
+                            </label>
+
+                            <input type="url" id="backlinkUrl" placeholder="https://example.com/page">
+
+                        </div>
+
+
+                        <div>
+
+                            <label for="anchorText">
+                                Anchor Text
+                            </label>
+
+                            <input type="text" id="anchorText" placeholder="Syscom India">
+
+                        </div>
+
+
+                        <div>
+
+                            <label for="backlinkStatus">
+                                Status
+                            </label>
+
+                            <select id="backlinkStatus">
+
+                                <option value="potential">
+                                    Potential
+                                </option>
+
+                                <option value="outreach">
+                                    Outreach
+                                </option>
+
+                                <option value="placed">
+                                    Placed
+                                </option>
+
+                                <option value="verified">
+                                    Verified
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="primary-btn">
+
+                            Save Backlink
+
+                        </button>
+
+
+                        <button type="button" id="cancelBacklinkBtn" class="secondary-btn">
+
+                            Cancel
+
+                        </button>
+
+                    </div>
+
+
+                    <p id="backlinkFormMessage"></p>
+
+                </form>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Domain</th>
+
+                            <th>URL</th>
+
+                            <th>Anchor Text</th>
+
+                            <th>Status</th>
+
+                            <th>Created</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="backlinkTableBody">
+
+                        <tr>
+
+                            <td colspan="5">
+                                Loading backlinks...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/api.js"></script>
+
+    <script src="js/auth.js"></script>
+
+    <script src="js/backlinks.js"></script>
+
+</body>
+
+</html>

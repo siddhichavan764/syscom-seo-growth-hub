@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Organic Traffic | Syscom SEO Growth Hub</title>
+
+    <meta name="description" content="Track SEO content, organic traffic and business leads.">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body>
+
+    <div class="dashboard-container">
+
+        <header class="page-header">
+
+            <div>
+
+                <h1>
+                    Organic Traffic & Content
+                </h1>
+
+                <p>
+                    Track SEO content, organic visits and leads generated.
+                </p>
+
+            </div>
+
+            <button id="addContentBtn" class="primary-btn">
+                + Add SEO Content
+            </button>
+
+        </header>
+
+
+        <!-- SUMMARY -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <h3>
+                    Total Content
+                </h3>
+
+                <p id="totalContent">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Published
+                </h3>
+
+                <p id="publishedContent">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Organic Visits
+                </h3>
+
+                <p id="organicVisits">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>
+                    Leads Generated
+                </h3>
+
+                <p id="leadsGenerated">
+                    0
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADD CONTENT FORM -->
+
+        <section id="contentFormContainer" class="form-section" style="display: none;">
+
+            <h2>
+                Add SEO Content
+            </h2>
+
+
+            <form id="contentForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="contentTitle">
+                            Article Title
+                        </label>
+
+                        <input type="text" id="contentTitle" placeholder="Enter article title" required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="contentSlug">
+                            Slug
+                        </label>
+
+                        <input type="text" id="contentSlug" placeholder="example-seo-article" required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="targetKeyword">
+                            Target Keyword
+                        </label>
+
+                        <input type="text" id="targetKeyword" placeholder="Enter target keyword">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="searchIntent">
+                            Search Intent
+                        </label>
+
+                        <select id="searchIntent">
+
+                            <option value="">
+                                Select Intent
+                            </option>
+
+                            <option value="Informational">
+                                Informational
+                            </option>
+
+                            <option value="Commercial">
+                                Commercial
+                            </option>
+
+                            <option value="Transactional">
+                                Transactional
+                            </option>
+
+                            <option value="Local">
+                                Local
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="targetUrl">
+                            Target URL
+                        </label>
+
+                        <input type="text" id="targetUrl" placeholder="/blog/example-article">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="contentCategory">
+                            Category
+                        </label>
+
+                        <input type="text" id="contentCategory" placeholder="SEO / Web Development">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="contentStatus">
+                            Status
+                        </label>
+
+                        <select id="contentStatus">
+
+                            <option value="draft">
+                                Draft
+                            </option>
+
+                            <option value="published">
+                                Published
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div id="contentFormMessage" class="form-message"></div>
+
+
+                <div class="form-actions">
+
+                    <button type="submit" class="primary-btn">
+                        Save SEO Content
+                    </button>
+
+
+                    <button type="button" id="cancelContentBtn" class="secondary-btn">
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- FILTERS -->
+
+        <section class="filter-section">
+
+            <input type="text" id="contentSearch" placeholder="Search content or keywords...">
+
+
+            <select id="contentStatusFilter">
+
+                <option value="all">
+                    All Statuses
+                </option>
+
+                <option value="draft">
+                    Draft
+                </option>
+
+                <option value="published">
+                    Published
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- CONTENT TABLE -->
+
+        <section class="table-section">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Article
+                        </th>
+
+                        <th>
+                            Target Keyword
+                        </th>
+
+                        <th>
+                            Intent
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Organic Visits
+                        </th>
+
+                        <th>
+                            Leads
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                        <th>
+                            Published
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="contentTableBody">
+
+                    <tr>
+
+                        <td colspan="8">
+                            Loading content...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </div>
+
+
+    <script src="js/api.js"></script>
+
+    <script src="js/auth.js"></script>
+
+    <script src="js/organic-traffic.js"></script>
+
+</body>
+
+</html>

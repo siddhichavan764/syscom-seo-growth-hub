@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Directory Listings | Syscom SEO Growth Hub
+    </title>
+
+    <meta name="description" content="Manage legitimate business directory listings and local SEO citations for Syscom.">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+    <main class="page-container">
+
+        <!-- PAGE HEADER -->
+
+        <section class="page-header">
+
+            <h1>
+                Directory Listings
+            </h1>
+
+            <p>
+                Manage legitimate business directories and local SEO citation opportunities.
+            </p>
+
+        </section>
+
+
+        <!-- SUMMARY CARDS -->
+
+        <section class="summary-cards">
+
+            <div class="summary-card">
+
+                <h3>
+                    Total Directories
+                </h3>
+
+                <strong id="totalDirectories">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>
+                    Potential
+                </h3>
+
+                <strong id="potentialDirectories">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>
+                    Submitted
+                </h3>
+
+                <strong id="submittedDirectories">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>
+                    Listed
+                </h3>
+
+                <strong id="listedDirectories">
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- DIRECTORY SECTION -->
+
+        <section class="keyword-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Business Directory Opportunities
+                    </h2>
+
+                    <p>
+                        Track relevant and legitimate directory listings for local visibility.
+                    </p>
+
+                </div>
+
+
+                <button id="addDirectoryBtn" class="primary-btn" type="button">
+
+                    + Add Directory
+
+                </button>
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <div class="keyword-filters">
+
+                <input type="search" id="directorySearch" placeholder="Search directories...">
+
+
+                <select id="directoryStatusFilter">
+
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="potential">
+                        Potential
+                    </option>
+
+                    <option value="submitted">
+                        Submitted
+                    </option>
+
+                    <option value="listed">
+                        Listed
+                    </option>
+
+                    <option value="rejected">
+                        Rejected
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ADD DIRECTORY FORM -->
+
+            <div id="directoryFormContainer" class="keyword-form-container" style="display: none;">
+
+                <h3>
+                    Add Directory
+                </h3>
+
+
+                <form id="directoryForm">
+
+                    <div class="form-grid">
+
+
+                        <div>
+
+                            <label for="directoryName">
+                                Directory Name
+                            </label>
+
+                            <input type="text" id="directoryName" placeholder="Example Business Directory" required>
+
+                        </div>
+
+
+                        <div>
+
+                            <label for="directoryUrl">
+                                Directory URL
+                            </label>
+
+                            <input type="url" id="directoryUrl" placeholder="https://example.com">
+
+                        </div>
+
+
+                        <div>
+
+                            <label for="directoryCategory">
+                                Category
+                            </label>
+
+                            <input type="text" id="directoryCategory" placeholder="Business / Technology / Local">
+
+                        </div>
+
+
+                        <div>
+
+                            <label for="directoryStatus">
+                                Status
+                            </label>
+
+                            <select id="directoryStatus">
+
+                                <option value="potential">
+                                    Potential
+                                </option>
+
+                                <option value="submitted">
+                                    Submitted
+                                </option>
+
+                                <option value="listed">
+                                    Listed
+                                </option>
+
+                                <option value="rejected">
+                                    Rejected
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="primary-btn">
+
+                            Save Directory
+
+                        </button>
+
+
+                        <button type="button" id="cancelDirectoryBtn" class="secondary-btn">
+
+                            Cancel
+
+                        </button>
+
+                    </div>
+
+
+                    <p id="directoryFormMessage"></p>
+
+                </form>
+
+            </div>
+
+
+            <!-- DIRECTORY TABLE -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Directory
+                            </th>
+
+                            <th>
+                                URL
+                            </th>
+
+                            <th>
+                                Category
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Created
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="directoryTableBody">
+
+                        <tr>
+
+                            <td colspan="5">
+                                Loading directories...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/api.js"></script>
+
+    <script src="js/auth.js"></script>
+
+    <script src="js/directories.js"></script>
+
+</body>
+
+</html>
