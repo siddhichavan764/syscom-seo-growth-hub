@@ -1,88 +1,238 @@
 # Syscom SEO Growth Hub
 
-A full-stack SEO and content management platform designed to support Syscom's organic search growth, content publishing, technical SEO auditing, keyword planning, backlink management, directory management, and social content distribution.
+A full-stack SEO growth management platform designed to help Syscom improve organic visibility, target high-intent searches, manage content, strengthen off-page SEO, and track the journey from search demand to business enquiries.
+
+---
 
 ## 1. Project Objective
 
-The objective of this project is to build a web application that supports:
+The objective of this project is to build a practical SEO growth system for Syscom that goes beyond basic website optimization.
 
-- Improved organic search visibility
-- SEO-friendly content publishing
-- Technical SEO auditing
-- High-intent keyword planning
+The platform focuses on:
+
+- High-intent keyword targeting
+- SEO-focused landing pages and content
+- Organic traffic growth
+- Technical SEO monitoring
 - Backlink opportunity management
 - Directory listing management
-- Social content distribution tracking
-- Lead collection
-- Long-term organic traffic growth
+- Social content distribution
+- Lead generation tracking
+- SEO performance monitoring
+- Sustainable white-hat SEO practices
 
-The application follows SEO-friendly development practices such as semantic HTML, metadata optimization, canonical URLs, structured data, internal linking, robots.txt, XML sitemap, mobile-friendly layouts, and secure backend APIs.
+The overall growth funnel is:
+
+**Search Demand → High-Intent Keywords → SEO Content/Landing Pages → Organic Traffic → Business Enquiries → Conversions**
 
 ---
 
-## 2. Key Features
+## 2. SEO Growth Strategy
 
-### Public Website
+### High-Intent Keyword Strategy
 
-- SEO-optimized homepage
-- Services page
-- Blog listing
-- Dynamic article pages
-- Contact/lead generation form
-- SEO audit interface
-- Custom 404 page
-- Responsive design
+Keywords are organized according to search intent:
 
-### Content Management
+- Transactional
+- Commercial
+- Informational
+- Local
 
-- Create and manage articles
-- Article categories
-- Draft/published status
-- SEO title and meta description
-- SEO-friendly article slugs
-- Dynamic article rendering
+Priority is given to keywords that have stronger potential to generate business enquiries.
 
-### SEO Management
+Examples include:
 
-- Technical SEO audit
-- SEO score calculation
-- Title analysis
+- Web development company Pune
+- Website development services Pune
+- Software development company Pune
+- IT company Pune
+- Web development company near me
+
+The keyword management module allows keywords to be associated with:
+
+- Search intent
+- Location
+- Search volume
+- Competition
+- Target URL
+- Priority
+- Status
+
+---
+
+## 3. Organic Traffic Strategy
+
+The platform supports an SEO content workflow based on target search intent.
+
+Each content record can include:
+
+- Article title
+- SEO-friendly slug
+- Target keyword
+- Search intent
+- Target URL
+- Category
+- Publishing status
+- Organic visits
+- Leads generated
+- Published date
+
+This creates a measurable connection between SEO content and business outcomes.
+
+---
+
+## 4. Technical SEO
+
+The project includes technical SEO capabilities covering:
+
+- SEO title analysis
 - Meta description analysis
 - Heading analysis
 - Image alt-text analysis
-- HTTPS check
-- Viewport check
-- Canonical check
-- Robots check
+- HTTPS verification
+- Viewport verification
+- Canonical URL verification
+- Robots.txt verification
 - Internal link analysis
+- XML sitemap
+- Structured data
+- Semantic HTML
+- Mobile-friendly layouts
+- Custom 404 page
 
-### Off-Page SEO Management
-
-- Backlink opportunity tracking
-- Directory listing management
-- Keyword planning
-- Search-intent classification
-- Social post planning
-- Social post publishing status
-- Referral visit tracking
-
-### Lead Management
-
-- Contact form
-- Lead storage
-- Name, email, website, service and message fields
-- Timestamped lead records
-
-### Authentication
-
-- JWT-based authentication
-- Protected management APIs
-- Admin/editor roles
-- Password hashing using bcrypt
+A technical SEO audit interface is included to identify common optimization issues.
 
 ---
 
-## 3. Technology Stack
+## 5. Off-Page SEO Strategy
+
+The platform provides dedicated modules for managing off-page SEO activities.
+
+### Backlink Management
+
+Tracks backlink opportunities through:
+
+- Target website
+- Target URL
+- Anchor text
+- Opportunity status
+- Outreach status
+- Verification status
+
+The objective is to prioritize relevant and authoritative backlink opportunities rather than relying on low-quality or spammy links.
+
+### Directory Listings
+
+The directory module tracks:
+
+- Directory name
+- Directory URL
+- Category
+- Listing status
+
+Typical workflow:
+
+**Potential → Submitted → Listed**
+
+### Social Distribution
+
+The social distribution module tracks content promotion across platforms.
+
+Tracked information includes:
+
+- Platform
+- Post title
+- Post URL
+- Publishing status
+- Published date
+- Referral visits
+
+This helps connect content distribution with referral traffic.
+
+---
+
+## 6. Dashboard
+
+The dashboard provides a centralized view of SEO growth activities.
+
+### Core KPIs
+
+- High-Intent Keywords
+- SEO Content
+- Organic Traffic
+- Business Leads
+
+### Off-Page SEO Overview
+
+- Total Backlinks
+- Directory Listings
+- Social Posts
+- Published Social Posts
+
+### Growth Funnel
+
+1. High-Intent Keywords
+2. SEO Landing Pages
+3. Organic Traffic
+4. Business Enquiries
+5. Conversions
+
+The dashboard is designed to connect SEO activity with measurable business outcomes.
+
+---
+
+## 7. Content Management
+
+The content system supports:
+
+- Article creation
+- Article categories
+- Draft/published status
+- SEO titles
+- Meta descriptions
+- SEO-friendly slugs
+- Target keywords
+- Search intent
+- Target URLs
+- Organic traffic tracking
+- Lead tracking
+
+Unique article slugs are maintained to prevent duplicate URLs.
+
+---
+
+## 8. Lead Management
+
+The platform includes a lead-generation workflow through the website contact form.
+
+Lead records can contain:
+
+- Name
+- Email
+- Website
+- Service
+- Message
+- Timestamp
+
+This allows organic acquisition efforts to be connected with potential business enquiries.
+
+---
+
+## 9. Authentication & Security
+
+Management functionality is protected using:
+
+- JWT authentication
+- Protected API routes
+- Role-based user information
+- bcrypt password hashing
+- Helmet security middleware
+- CORS configuration
+- Environment variables for sensitive configuration
+
+---
+
+## 10. Technology Stack
 
 ### Frontend
 
@@ -96,7 +246,6 @@ The application follows SEO-friendly development practices such as semantic HTML
 
 - Node.js
 - Express.js
-- MySQL
 - mysql2
 - JWT
 - bcryptjs
@@ -108,24 +257,25 @@ The application follows SEO-friendly development practices such as semantic HTML
 ### Database
 
 - MySQL
+- TiDB Cloud compatible database configuration
 
-### Development Tools
+### Development
 
 - Git
 - GitHub
 - npm
 - Nodemon
+- Render
 
 ---
 
-## 4. Project Structure
+## 11. Project Structure
 
 ```text
 syscom-seo-growth-hub/
 │
 ├── Backend/
 │   ├── config/
-│   │   └── db.js
 │   ├── controllers/
 │   ├── middleware/
 │   ├── routes/
@@ -145,7 +295,11 @@ syscom-seo-growth-hub/
 │   ├── contact.html
 │   ├── seo-audit.html
 │   ├── dashboard.html
-│   ├── seo-management.html
+│   ├── keyword-strategy.html
+│   ├── backlinks.html
+│   ├── directory-listings.html
+│   ├── social-distribution.html
+│   ├── organic-traffic.html
 │   ├── login.html
 │   ├── 404.html
 │   ├── robots.txt
@@ -153,5 +307,9 @@ syscom-seo-growth-hub/
 │
 ├── database/
 │   └── schema.sql
+│
+├── seo-engine/
+│
+├── Docs/
 │
 └── README.md
